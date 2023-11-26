@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tienda</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Favicon and Touch Icons-->
+  <link rel="stylesheet" href="assets/css/chat.css">
+  <link href="assets/css/chatBot.css" rel="stylesheet" type="text/css"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="mask-icon" color="#5bbad5" href="assets/img/safari-pinned-tab.svg">
+  <meta name="msapplication-TileColor" content="#766df4">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Vendor Styles-->
+  <link rel="stylesheet" media="screen" href="assets/vendor/tiny-slider/dist/tiny-slider.css"/>
+
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="assets/css/demo/ecommerce/theme.min.css">
+  <link rel="stylesheet" href="assets/css/iziToast.min.css">
+  <link rel="stylesheet" href="assets/css/simplebar.min.css">
+  <link rel="stylesheet" href="assets/css/nouislider.min.css">
+  <link rel="stylesheet" href="assets/css/tiny-slider.css">
+  <link rel="stylesheet" href="assets/vendor/lightgallery.js/dist/css/lightgallery.min.css">
+
+  <!-- Page loading styles-->
+  <style>
+    .pagination{
+    margin-bottom: 0px;
+  }
+    .cs-page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all .4s .2s ease-in-out;
+      transition: all .4s .2s ease-in-out;
+      background-color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+    .cs-page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .cs-page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity .2s ease-in-out;
+      transition: opacity .2s ease-in-out;
+      opacity: 0;
+    }
+    .cs-page-loading.active > .cs-page-loading-inner {
+      opacity: 1;
+    }
+    .cs-page-loading-inner > span {
+      display: block;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #787a80;
+    }
+    .cs-page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: .75rem;
+      vertical-align: text-bottom;
+      background-color: #cfcfd1; 
+      border-radius: 50%;
+      opacity: 0;
+      -webkit-animation: spinner .75s linear infinite;
+      animation: spinner .75s linear infinite;
+    }
+    @-webkit-keyframes spinner {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+    @keyframes spinner {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+  </style>
+
+<style>
+  .cs-range-slider-ui .noUi-handle {
+      top: 50% !important;
+      width: .875rem !important;
+      height: .875rem !important;
+      margin-top: -.4375rem !important;
+      border: 2px solid #fff !important;
+      border-radius: 50% !important;
+      box-shadow: none !important;
+      background-color: #17696a !important;
+  }
+  .cs-range-slider-ui {
+      height: .125rem !important;
+      margin: 3rem 0 !important;
+      border: 0 !important;
+      background-color: #dadbdd !important;
+      box-shadow: none !important;
+  }
+</style>
+
+
+  <!-- Page loading scripts-->
+  <script>
+    (function () {
+      window.onload = function () {
+        var preloader = document.querySelector('.cs-page-loading');
+        preloader.classList.remove('active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 1000);
+      };
+    })();
+  </script>
+
+  <!-- Demo switcher off-canvas toggle styles -->
+  <style>
+    .cs-demo-switcher {
+      position: fixed;
+      display: block;
+      top: 50%;
+      right: 1rem;
+      z-index: 100;
+    }
+    .cs-demo-switcher-inner {
+      width: 3rem;
+      height: 3rem;
+      border: 1px solid #e5e8ed;
+      border-radius: 50%;
+      background-color: #fff;
+      color: #1e212c;
+      font-size: 1.25rem;
+      line-height: 3rem;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0px 10px 15px 0px rgba(30,33,44,0.10);
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- Page loading spinner-->
+  <div class="cs-page-loading active">
+    <div class="cs-page-loading-inner">
+      <div class="cs-page-spinner"></div><span>Cargando...</span>
+    </div>
+  </div>
+
+  <main class="cs-page-wrapper">
+    <app-root></app-root>
+  </main>
+
+    <!-- Back to top button-->
+    <body>
+      <!-- CHAT BAR BLOCK -->
+      <div class="chat-bar-collapsible">
+          <!-- <button class="collapsible">
+          </button> -->
+          <div class="collapsible">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square animate"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+  
+          <div class="content">
+              <div class="chat-header">
+                  <div class="chat-header-title">
+                      Tú asistente del Mundo Azucarado
+                  </div>
+              </div>
+              
+              <div class="full-chat-block">
+                  <!-- Message Container -->
+                  <div class="outer-container">
+                      <div class="chat-container">
+                          <!-- Messages -->
+                          <div id="chatbox">
+                              <h5 id="chat-timestamp"></h5>
+                              <p id="botStarterMessage" class="botText"><span>Cargando...</span></p>
+                          </div>
+  
+                          <!-- User input box -->
+                          <div class="chat-bar-input-block">
+                              <div id="userInput">
+                                  <input id="textInput" class="input-box" type="text" name="msg"
+                                      placeholder="Tap 'Enter' to send a message">
+                                  <p></p>
+                              </div>
+  
+                              <div class="chat-bar-icons">
+                                  <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"
+                                      onclick="heartButton()"></i>
+                                  <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"
+                                      onclick="sendButton()"></i>
+                              </div>
+                          </div>
+  
+                          <div id="chat-bar-bottom">
+                              <p></p>
+                          </div>
+  
+                      </div>
+                  </div>
+  
+              </div>
+          </div>
+  
+      </div>
+  
+    </body>
+
+
+  <!-- Vendor scripts: js libraries and plugins-->
+  <script src="assets/vendor/jquery/dist/jquery.slim.min.js"></script>
+  <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="assets/vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="assets/js//simplebar.min.js"></script>
+  <script src="assets/js/nouislider.min.js"></script>
+  <script src="assets/js/smooth-scroll.polyfills.min.js"></script>
+
+  <!-- Main theme script-->
+  <script src="assets/js/theme.min.js"></script>
+  <script src="assets/js/iziToast.min.js"></script>
+  <script src="assets/vendor/lightgallery.js/dist/js/lightgallery.min.js"></script>
+
+  <script src="https://kit.fontawesome.com/291d945404.js" crossorigin="anonymous"></script>
+
+  <script src="assets/js/cleave.min.js"></script>
+  <script src="assets/js/sticky-sidebar.min.js"></script>
+
+  <script src="https://www.paypal.com/sdk/js?client-id=ATdJdbRDsotmeZ7d4V3Hev8kgqjHXeOQ6ucXyxKMUSrFLyfqCSl7ycdtawE7G5wkNS1bfrnXL2WvyQEk"></script>
+
+  <!-- SCRIPTS CHATBOT -->
+  <script src="assets/js/chat.js"></script>
+  <script src="assets/js//responses.js"></script>
+</body>
+</html>
